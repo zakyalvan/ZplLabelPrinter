@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <title>Local Print Form</title>
+</head>
+<body>
+    <h1>Print Barcode</h1>
+    <form action="/printers/local" th:action="@{/printers/local}" th:object="${localPrintForm}" method="post">
+    <table border="0">
+        <tr>
+            <td><label for="serviceName">Print Service</label></td>
+            <td>
+                <select name="serviceName" id="serviceName" th:field="*{serviceName}">
+                    <option th:each="name : ${serviceNames}" th:value="${name}" th:text="${name}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="printerCommand">Command</label></td>
+            <td>
+                <textarea name="printerCommand" id="printerCommand" rows="30" cols="100" th:field="*{printCommand}"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button type="submit">Print!</button>
+            </td>
+        </tr>
+    </table>
+    </form>
+</body>
+</html>
