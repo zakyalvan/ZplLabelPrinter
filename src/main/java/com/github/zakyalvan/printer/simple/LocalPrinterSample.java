@@ -6,9 +6,17 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class LocalPrinterSample {
+    /**
+     * Change this constant to meet your environment, i.e. zebra printer name installed on your machine.
+     */
+    private static final String PRINT_SERVICE_NAME = "Zebra-ZPL";
+
     public static void main(String[] args) throws Exception {
         PrintService[] services = PrintServiceLookup.lookupPrintServices(null, null);
-        List<PrintService> serviceList =  Arrays.stream(services).filter(service -> service.getName().equals("Zebra-ZPL")).collect(Collectors.toList());
+        List<PrintService> serviceList =  Arrays.stream(services)
+                .filter(service -> service.getName().equals(PRINT_SERVICE_NAME))
+                .collect(Collectors.toList());
+
         if(serviceList.size() != 1) {
             throw new RuntimeException("No zpl printer");
         }
